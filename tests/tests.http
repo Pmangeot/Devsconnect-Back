@@ -1,0 +1,165 @@
+@baseUrl = http://localhost:4000
+@accessToken = {{login.response.body.$.data.accessToken}}
+@refreshToken = {{login.response.body.$.data.refreshToken}}
+
+
+# @name login
+POST {{baseUrl}}/login
+content-type: application/json
+
+{
+    "email": "Andree67@yahoo.fr",
+    "password": "secret"
+}
+
+###
+
+# @name register
+POST {{baseUrl}}/signin
+content-type: application/json
+Authorization: Bearer
+
+{
+  "lastname": "Black",
+  "firstname": "Sirius ",
+  "email": "sirius@gmail.com",
+  "pseudo": "Sisi",
+  "password": "Harry!87",
+  "description": "Tout droit sorti d'Azkaban",
+  "availability": false,
+  "tags": [
+    1,
+    2
+  ]
+}
+
+###
+
+# @name getUsers
+GET {{baseUrl}}/api/users
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+# @name getOneUser
+GET {{baseUrl}}/api/users/51
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+# @name editUser
+PUT {{baseUrl}}/api/users/51
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlwIjoiOjpmZmZmOjEyNy4wLjAuMSIsImVtYWlsIjoic2lyaXVzQGdtYWlsLmNvbSIsImlkIjo1MX0sImlhdCI6MTY5MTg1OTU2MCwiZXhwIjoxNjkxODYwNDYwfQ.FK5YdDNXVfALHS3jhn1Hzffstm-uCwpw6E-VzAcxvm4
+
+{
+  "lastname": "Black",
+  "firstname": "Sirius ",
+  "email": "sirius@gmail.com",
+  "pseudo": "Soso",
+  "password": "Harry!87",
+  "description": "Tout droit sorti d'Azkaban",
+  "availability": true,
+  "tags": [
+    2,
+    3,
+    6
+  ]
+}
+
+###
+
+# @name deleteUser
+DELETE {{baseUrl}}/api/users/51
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+# @name getProjects
+GET {{baseUrl}}/api/projects
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+# @name getOneProject
+GET {{baseUrl}}/api/projects/20
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+# @name createProject
+POST {{baseUrl}}/api/projects
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlwIjoiOjpmZmZmOjEyNy4wLjAuMSIsImVtYWlsIjoiQW5kcmVlNjdAeWFob28uZnIiLCJpZCI6N30sImlhdCI6MTY5MTg3MTU4NCwiZXhwIjoxNjkxODcyNDg0fQ.wAjBhD_0yR-1-sXc6E5UaKRz-21IvbrPoXCeell6vxI
+
+{
+  "title": "Harry Potter",
+  "description": "Lorem ipsum blabla",
+  "availability": true,
+  "user_id": 7,
+  "tags": [
+    1,
+    3
+  ]
+}
+
+###
+
+# @name editProject
+PUT {{baseUrl}}/api/projects/21
+content-type: application/json
+Authorization: Bearer 
+
+{
+  "title": "Harry Potter",
+  "description": "Lorem ipsum blabla",
+  "availability": true,
+  "user_id": 51,
+  "tags": [
+    1,
+    3
+  ]
+}
+
+###
+
+# @name deleteProject
+DELETE {{baseUrl}}/api/projects/1
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+# @name applyToProject
+POST {{baseUrl}}/api/projects/3/user/
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+# @name addUserToProject
+PUT {{baseUrl}}/api/projects/3/user/
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+# @name removeUserToProject
+DELETE {{baseUrl}}/api/projects/1/user/3
+content-type: application/json
+Authorization: Bearer 
+
+###
+
+POST {{baseUrl}}/refresh-token
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "refreshToken": "{{refreshToken}}"
+}
